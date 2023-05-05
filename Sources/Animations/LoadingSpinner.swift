@@ -68,8 +68,8 @@ public struct SpinnerCircle: Shape {
 }
 
 public struct SpinnerView: View {
-    @State
-    var progress = 0.0
+    @State var progress = 0.0
+    @State var isPresented = true
 
     var lineWidth = 10.0
 
@@ -78,9 +78,10 @@ public struct SpinnerView: View {
         .repeatForever(autoreverses: false)
     }
 
-    public init(progress: Double = 0.0, lineWidth: Double = 10.0) {
+    public init(progress: Double = 0.0, lineWidth: Double = 10.0, isPresented: Bool = true) {
         self.progress = progress
         self.lineWidth = lineWidth
+        self.isPresented = isPresented
     }
 
     public var body: some View {
@@ -107,5 +108,25 @@ public struct SpinnerView: View {
                 progress = 1.0
             }
         }
+    }
+}
+
+public struct LoadingSpinner_Previews: PreviewProvider {
+    public static var previews: some View {
+        SpinnerView(progress: 1, lineWidth: 1)
+            .frame(width: 200, height: 200)
+    }
+}
+
+public struct SpinnerView_Previews: PreviewProvider {
+    public static var previews: some View {
+        SpinnerView(progress: 1, lineWidth: 1)
+//            .frame(width: 200, height: 200)
+    }
+}
+
+public struct SpinnerCircle_Previews: PreviewProvider {
+    public static var previews: some View {
+        SpinnerCircle(progress: 1, lineWidth: 1)
     }
 }
